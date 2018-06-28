@@ -1,20 +1,20 @@
 # Dependencies
 markdown:         kramdown
-highlighter:      rouge
+#highlighter:      rouge
 #theme: jekyll-theme-cayman
 
 # Permalinks
 permalink:        pretty
 
 # Setup
-title:            David
+title:            David Chang
 tagline:          'Yale CBB'
 description:      'Deep Learning for Electronic Health Records'
 url:              http://dchang56.github.io
 baseurl:          ''
 
 author:
-  name:           'Ray Zhang'
+  name:           'David Chang'
 
 paginate:         10
 
