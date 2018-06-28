@@ -6,10 +6,10 @@ highlighter:      rouge
 permalink:        pretty
 
 # Setup
-title:            Ray
-tagline:          'UCLA CS'
-description:      'CS & Math Stuff'
-url:              http://oneraynyday.github.io
+title:            David
+tagline:          'Yale CBB'
+description:      'Deep Learning for Electronic Health Records'
+url:              http://dchang56.github.io
 baseurl:          ''
 
 author:
@@ -18,9 +18,8 @@ author:
 paginate:         10
 
 # Custom vars
-version:          2.1.0
 
-github:           https://github.com/oneraynyday
+github:           https://github.com/dchang56
 
 plugins:
   - jekyll-archives
