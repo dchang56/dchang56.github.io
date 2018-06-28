@@ -1,10 +1,15 @@
 ---
 published: true
-title: Reineeeeforcement Learning - Monte Carlo Methods
+title: Countdown Regression: sharp and calibrated survival predictions
 use_math: true
 category: ML
 layout: default
 ---
+
+# Table of Contents
+
+* TOC
+{:toc}
 
 Personalized probabilistic forecasts of time to event
 
@@ -93,4 +98,6 @@ where c is the censorship indicator.
 
 However, the log scoring rule is asymmetric, and harshly penalizes predictions that are wrong yet confident. This results in the training process becoming sensitive to outliers, and in general conservative in prediction-making (i.e. hesitant to make sharp predictions).
 
-![alt text][fig
+![figure2][fig2]
+
+[fig2]: https://github.com/dchang56/dchang56.github.io/assets/fig2.png
