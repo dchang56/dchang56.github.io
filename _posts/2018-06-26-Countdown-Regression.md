@@ -100,4 +100,4 @@ However, the log scoring rule is asymmetric, and harshly penalizes predictions t
 
 ![figure2][fig2]
 
-[fig2]: https://github.com/dchang56/dchang56.github.io/assets/fig2.png
+[fig2]: {{ site.url }}/assets/fig2.png
