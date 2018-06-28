@@ -2,7 +2,7 @@
 published: true
 title: Countdown Regression: sharp and calibrated survival predictions
 use_math: true
-category: Survival Analysis
+category: ML
 layout: default
 ---
 
