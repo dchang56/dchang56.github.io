@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         kramdown
-highlighter:      rouge
+highlighter:      yale blue
 
 # Permalinks
 permalink:        pretty
