@@ -1,6 +1,6 @@
 ---
 published: true
-title: Countdown Regression: sharp and calibrated survival predictions
+title: Countdown Regression
 use_math: true
 category: ML
 layout: default
