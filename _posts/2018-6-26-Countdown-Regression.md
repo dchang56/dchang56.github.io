@@ -1,6 +1,9 @@
 ---
-layout: post
-title: Countdown Regression
+published: true
+title: Countdown Regression: sharp and calibrated survival predictions
+use_math: true
+category: Survival Analysis
+layout: default
 ---
 
 Personalized probabilistic forecasts of time to event
