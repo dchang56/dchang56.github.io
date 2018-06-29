@@ -3,20 +3,7 @@ layout: page
 title: About
 ---
 
-Hi! If you happened to chance upon my blog, there is a high probability that you will be interested in
-one of the topics that I dabble in. I'm by no means an expert at any of them, but
-I do aim to illustrate the concepts that I _do_ know in a _clear, digestible, and hopefully fun way_.
+Hello! I'm just about to begin my third year of PhD at Yale, and I'll be delving into a topic that has interested me for a while: Deep Learning for Electronic Health Records. 
 
-I'm currently an undergraduate student at UCLA studying computer science. I'm a huge math geek and I take
-too many math classes for fun. I used to do fun research with Professor Talwalkar and his PhD student Liam Li,
-but they've since moved to CMU and I haven't been able to find something as interesting since. :(
+I have a lot of catching up to do, and I figured putting together a literature review would be a good way to get a sense of what's been happening in the field, who the main players have been, and what problems I would like to tackle during my PhD. Fortunately, it's a relatively new and fast growing field, and doing a literature review seems manageable and rewarding (though still challenging). My hope is that by the end of this endeaver, I'll be in a position to start contributing actively to the community. 
 
-Most of the time, I write on this blog because I'm too lazy to take on some huge project and just want to
-chill and learn some fun stuff that's probably not useful.
-
-![management]({{ site.url }}/assets/xkcdtimemanagement.png)
-
-I'm currently doing an internship for Citadel LLC, and I am going to work at Airbnb during the summer,
-working on ML.
-
-If you have questions about what I wrote in my blog, don't hesitate to shoot me a message at rayzhang@g.ucla.edu.
