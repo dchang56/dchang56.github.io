@@ -83,7 +83,7 @@ A scoring rule is a measure of the quality of a probabilistic forecast. A foreca
 A scoring rule S takes a predicted distribution and an actual outcome, and returns a loss $S(\hat{F},y)$.
 
 It is considered a *proper scoring rule* if for all possible distributions G,
-$$\mathbb{E}_{y\sim\hat{F}}\big\[S(\hat{F},y)\] \leq \mathbb{E}_{y\sim\hat{F}}\big\[S(G,y)\]$$, and strictly proper when equality holds iff $\hat{F} = G$
+$$\mathbb{E}_{y\sim\hat{F}} \big[S(\hat{F},y)] \leq \mathbb{E}_{y\sim\hat{F}}\big[S(G,y)]$$ , and strictly proper when equality holds iff $\hat{F} = G$
 
 A proper scoring rule is one in which the expected score is minimized by the distribution with respect to which the expectation is taken. Intuitively, it encourages a model for being honest by predicting what it actually believes. It naturally forced the model to output calibrated probabilities.
 
@@ -145,7 +145,7 @@ compare predicted cumulative densities against observed event frequencies, evalu
 
 Subject to calibration, we want prediction distributions that are sharp (concentrated).There are several ways to measure sharpness, such as variance or entropy. They use the coefficient of variation (CoV) as a reasonable measure of sharpness, defined as the ratio of one sd to the mean
 
-$$CoV(\hat{F}) = \frac{\sqrt{Var\[\hat{F}\]}}{\mathbb{E}\[\hat{F}\]\}$$
+$$CoV(\hat{F}) = \frac{ \sqrt{Var[\hat{F}]} } { \mathbb{E}[\hat{F}]}$$
 
 ## 2.3 Survival-AUPRC - holistic evaluation of a time to event prediction distribution
 
