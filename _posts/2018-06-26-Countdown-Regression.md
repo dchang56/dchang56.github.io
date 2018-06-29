@@ -73,7 +73,7 @@ quality of a prediction distribution with respect to a possibly censored outcome
 
 Parametric survival prediction methods model the time to event of interest with a family of probability distributions,
 uniquely identified by the distribution parameters.
-The survival function, denoted $S(t) : [0,\infty) \to [0,1]$, is a monotonically decreasing function over the positive reals with 
+The survival function, denoted $S(t) : \[0,\infty) \to \[0,1\]$, is a monotonically decreasing function over the positive reals with 
 S(0)=1 and $\lim_{t\to\infty} S(t)=0$
 
 
@@ -83,7 +83,7 @@ A scoring rule is a measure of the quality of a probabilistic forecast. A foreca
 A scoring rule S takes a predicted distribution and an actual outcome, and returns a loss $S(\hat{F},y)$.
 
 It is considered a *proper scoring rule* if for all possible distributions G,
-$$\mathbb{E}_{y\sim\hat{F}}\big[S(\hat{F},y)] \leq \mathbb{E}_{y\sim\hat{F}}\big[S(G,y)]$$, and strictly proper when equality holds iff $\hat{F} = G$
+$$\mathbb{E}_{y\sim\hat{F}}\big\[S(\hat{F},y)] \leq \mathbb{E}_{y\sim\hat{F}}\big\[S(G,y)]$$, and strictly proper when equality holds iff $\hat{F} = G$
 
 A proper scoring rule is one in which the expected score is minimized by the distribution with respect to which the expectation is taken. Intuitively, it encourages a model for being honest by predicting what it actually believes. It naturally forced the model to output calibrated probabilities.
 
@@ -130,3 +130,24 @@ Note: when c=0 (i.e. uncensored), both of them are equivalent to CRPS. Again, in
 
 Survival-CRPS is identical to original CRPS when time of event is uncensored.
 For censored outcomes, it penalizes the predicted mass that occurs before the time of censoring (and for interval censored, mass after time by which the event must have occurred). Both variants are proper scoring rules. 
+
+## 2.2 Evaluation by sharpness subject to calibration
+
+Calibration assesses how well forecasted event probabilities match up to observed event probabilities. 
+There is no widely accepted method for evaluating the calibration of a set of entire prediction distributions, over multiple time frames, in the survival setting. 
+
+(D-calibration: recently proposed method for holistic evaluation, but relies on assuming true times of death are uniformly distributed past times of censoring, which means when censored obvs outnumber uncensored obvs, this can lead to overly optimistic assessments of calibration)
+
+There is also Kaplan-Meier estimate, but this is also limited in heavily censored settings (quantiles in the tail of predicted dist have few uncensored obvs)
+
+Proposal to measure calibration:
+compare predicted cumulative densities against observed event frequencies, evaluated at quantiles of predicted cumulative density. Right-censored obvs are removed from consideration in quantiles that correspond to times after their points of censoring. Interval-censored obvs are removed from consideration in quantiles that correspond to times after censoring, but reintroduced in quantiles that correspond to times past the time by which event must have occurred. 
+
+Subject to calibration, we want prediction distributions that are sharp (concentrated).There are several ways to measure sharpness, such as variance or entropy. They use the coefficient of variation (CoV) as a reasonable measure of sharpness, defined as the ratio of one sd to the mean
+
+$$CoV\hat{F} = \frac{\sqrt{Var\[\hat{F}\]}}{\mathbb{E}\[\hat{F}\]\}$$
+
+## 2.3 Survival-AUPRC - holistic evaluation of a time to event prediction distribution
+
+A metric that measures how concentrated the mass of the prediction distribution is around the true outcome.
+
