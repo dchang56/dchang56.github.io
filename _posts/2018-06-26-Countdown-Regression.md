@@ -108,6 +108,9 @@ Figure 2: graphical intuition for Survival-CRPS scoring rule. For uncensored obs
 
 An alternative proper scoring rule for forecasts over continuous outcomes is the CRPS, defined as
 
+$$ S_{CRPS}(\hat{F},y) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - 1\{z\geq{y}\}\big)^{2}dz$$
+
+$$ = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
 
 CRPS has been used in regrssion as an objective function that yields sharper predicted distributions compared to ML, while maintaining calibration. 
@@ -115,8 +118,11 @@ Note the two integral terms in the latter epression; they correspond to the two 
 
 In the context of time to event predictions, they propose the Survival-CRPS, which accounts for the possibility of right-censored or interval-censored data
 
-$$ S_{CRPS-RIGHT}(\hat{F},(y,c)) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - 1\{z\geq{y}\}\big)^{2}dz$$
+$$ S_{CRPS-RIGHT}(\hat{F},(y,c)) = \int_{0}^{\infty} \big(\hat{F}(z)1\{z\leq{y}\cupc=0\} - 1\{z\geq{y}\capc=0\}\big)^{2}dz$$
 
-$$ = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
+$$ = \int_{0}^{y} \hat{F}(z)^{2}dz + (1-c)\int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
+$$ S_{CRPS-INTVL}(\hat{F},(y,c,T)) = \int_{0}^{\infty} \big(\hat{F}(z)1\{\{z\leq{y}\cupc=0\}\cupz\geq{T}\} - 1\{\{z\geq{y}\capc=0\}\cupz\geq{T}\}\big)^{2}dz$$
+
+$$ = \int_{0}^{y} \hat{F}(z)^{2}dz + (1-c)\int_{y}^{T} (1-\hat{F}(z))^{2}dz + \int_{T}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
