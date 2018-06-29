@@ -116,13 +116,17 @@ $$ = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}d
 CRPS has been used in regrssion as an objective function that yields sharper predicted distributions compared to ML, while maintaining calibration. 
 Note the two integral terms in the latter epression; they correspond to the two shaded regions in Fig2a. CRPS score is reduced to 0 when the predicted distribution places all the mass on the point of true outcome (when shaded region vanishes).
 
-In the context of time to event predictions, they propose the Survival-CRPS, which accounts for the possibility of right-censored or interval-censored data
+In the context of time to event predictions, they propose the **Survival-CRPS**, which accounts for the possibility of right-censored or interval-censored data
 
-$$ S_{CRPS-RIGHT}(\hat{F},(y,c)) = \int_{0}^{\infty} \big(\hat{F}(z)1\{z\leq{y}\cupc=0\} - 1\{z\geq{y}\capc=0\}\big)^{2}dz$$
+$$ S_{CRPS-RIGHT}(\hat{F},(y,c)) = \int_{0}^{\infty} \big(\hat{F}(z)1\{z\leq{y}\cup c=0\} - 1\{z\geq{y}\cap c=0\}\big)^{2}dz$$
 
 $$ = \int_{0}^{y} \hat{F}(z)^{2}dz + (1-c)\int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
-$$ S_{CRPS-INTVL}(\hat{F},(y,c,T)) = \int_{0}^{\infty} \big(\hat{F}(z)1\{\{z\leq{y}\cupc=0\}\cupz\geq{T}\} - 1\{\{z\geq{y}\capc=0\}\cupz\geq{T}\}\big)^{2}dz$$
+$$ S_{CRPS-INTVL}(\hat{F},(y,c,T)) = \int_{0}^{\infty} \big(\hat{F}(z)1\{\{z\leq{y}\cup c=0\}\cup z\geq{T}\} - 1\{\{z\geq{y}\cap c=0\}\cup z\geq{T}\}\big)^{2}dz$$
 
 $$ = \int_{0}^{y} \hat{F}(z)^{2}dz + (1-c)\int_{y}^{T} (1-\hat{F}(z))^{2}dz + \int_{T}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
+Note: when c=0 (i.e. uncensored), both of them are equivalent to CRPS. Again, intuition is better understood by looking at second expression: each integral maps to corresponding shaded region in Fig2b and c. 
+
+Survival-CRPS is identical to original CRPS when time of event is uncensored.
+For censored outcomes, it penalizes the predicted mass that occurs before the time of censoring (and for interval censored, mass after time by which the event must have occurred). Both variants are proper scoring rules. 
