@@ -149,5 +149,32 @@ $$CoV(\hat{F}) = \frac{ \sqrt{Var[\hat{F}]} } { \mathbb{E}[\hat{F}]}$$
 
 ## 2.3 Survival-AUPRC - holistic evaluation of a time to event prediction distribution
 
-A metric that measures how concentrated the mass of the prediction distribution is around the true outcome.
+A metric that measures how concentrated the mass of the prediction distribution is around the true outcome, robust to miscalibration.
+
+Uncensored case:
+as an analog to precision, we consider intervals relative to the true time of event, defined by ratios. 
+  i.e. a region of precision 0.9 around an event at time y is the interval $[0.9y, y/0.9]$
+the analogy to recall is the mass assigned by the predicted distribution over this interval, $\hat{F}(y/0.9) - \hat{F}(0.9y)$.
+
+By exploring the full range of precision from 0 to 1, we get the Survival Precision Recall Curve. The area under this curve measures how quickly predicted mass concentrates around the true outcome as we expand the precision window.
+
+$$Survival-AUPRC_{UNCENSORED}(\hat{F},y) = \int_{0}^{1} (\hat{F}(y/t) - \hat{F}(yt))dt$$
+
+Max is 1, lowest is 0 (infinitely dispersed).The mean of all Survival-AUPRC scores across examples provides an overall measure of the quality of the predictions.
+This only applies to uncensored outcomes.
+
+Censored case:
+Same idea, but with the right end of precision intervals defined wrt the time by which the event must have occurred in the interval-censored case (infinity in right-censored case).
+
+$$Survival-AUPRC_{RIGHT}(\hat{F},y) = \int_{0}^{1} (1-\hat{F}(yt))dt$$
+
+$$Survival-AUPRC_{INTVL}(\hat{F},y,T) = \int_{0}^{1} (\hat{F}(T/t) - \hat{F}(yt)dt$$
+
+## 2.4 Recurrent neural network model
+
+Input: sequence of features (patient info from EHR)
+Want to predict parameters of a parametric prob dist $\hat{F}$ over time to death at each timestep.
+The distributions that are ouput in each timestep are used to construct an overall loss.
+
+$$\mathcal{L}$$
 
