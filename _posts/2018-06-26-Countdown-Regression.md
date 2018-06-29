@@ -115,6 +115,7 @@ Note the two integral terms in the latter epression; they correspond to the two 
 
 In the context of time to event predictions, they propose the Survival-CRPS, which accounts for the possibility of right-censored or interval-censored data
 
-$$ S_{CRPS-RIGHT}(\hat{F},(y,c)) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - 1\{z\geq{y}\}\big)^{2}dz = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
+$$ S_{CRPS-RIGHT}(\hat{F},(y,c)) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - \mathbbm{1}\{z\geq{y}\}\big)^{2}dz$$
+$$ = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
 
