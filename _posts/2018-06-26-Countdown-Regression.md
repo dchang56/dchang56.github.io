@@ -1,8 +1,8 @@
 ---
 published: true
-title: Countdown Regressionsss
+title: Countdown Regression
 use_math: true
-category: ML
+category: Literature Review - DLEHR
 layout: default
 ---
 
@@ -11,7 +11,8 @@ layout: default
 * TOC
 {:toc}
 
-did it work/?
+# Introduction
+
 Personalized probabilistic forecasts of time to event
 
 Inspired by ideas from the meteorology literature
@@ -78,7 +79,7 @@ S(0)=1 and $\lim_{t\to\infty} S(t)=0$
 
 ## 2.1 Survival-CRPS: proper scoring rules as training objectives
 
-A scoring rule is a measure of the quality of a probabilistic forecast. A forecast over a continuous outcome is a probability density function over all possible outcomes, $\hat{f} with corresponding cumulative density function \hat{F}.$ In reality, we observe some actual outcome, y. 
+A scoring rule is a measure of the quality of a probabilistic forecast. A forecast over a continuous outcome is a probability density function over all possible outcomes, $\hat{f}$ with corresponding cumulative density function $\hat{F}.$ In reality, we observe some actual outcome, y. 
 A scoring rule S takes a predicted distribution and an actual outcome, and returns a loss $S(\hat{F},y)$.
 
 It is considered a *proper scoring rule* if for all possible distributions G,
@@ -86,7 +87,7 @@ $$\mathbb{E}_{y\sim\hat{F}}\big[S(\hat{F},y)] \leq \mathbb{E}_{y\sim\hat{F}}\big
 
 A proper scoring rule is one in which the expected score is minimized by the distribution with respect to which the expectation is taken. Intuitively, it encourages a model for being honest by predicting what it actually believes. It naturally forced the model to output calibrated probabilities.
 
-There are many commonly used proper scoring rules. Most widely used is the logarithmic scoring rule, equivalent to the maximum likelihood objective:
+There are many commonly used proper scoring rules. Most widely used is the **logarithmic** scoring rule, equivalent to the maximum likelihood objective:
 
 $$S_{MLE}(\hat{F},y) = -log \hat{f}(y)$$
 
@@ -102,3 +103,16 @@ However, the log scoring rule is asymmetric, and harshly penalizes predictions t
 ![figure2][fig2]
 
 [fig2]: {{ site.url }}/assets/fig2.png
+
+Figure 2: graphical intuition for Survival-CRPS scoring rule. For uncensored observations, we minimize mass before and after the observed time of event. For right-censored, we minimize mass before observed time of censoring. For interval-censored, we minimize mass before observed time of censoring, and mass after the time by which event must have occurred. 
+
+An alternative proper scoring rule for forecasts over continuous outcomes is the CRPS, defined as
+
+$$ S_{CRPS}(\hat{F},y) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - \mathbbm{1}\{{z\geq{y}\}\big)^{2}dz = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
+
+CRPS has been used in regrssion as an objective function that yields sharper predicted distributions compared to ML, while maintaining calibration. 
+Note the two integral terms in the latter epression; they correspond to the two shaded regions in Fig2a. CRPS score is reduced to 0 when the predicted distribution places all the mass on the point of true outcome (when shaded region vanishes).
+
+In the context of time to event predictions, they propose the Survival-CRPS, which accounts for the possibility of right-censored or interval-censored data
+
+
