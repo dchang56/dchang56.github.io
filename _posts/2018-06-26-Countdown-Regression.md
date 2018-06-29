@@ -108,7 +108,7 @@ Figure 2: graphical intuition for Survival-CRPS scoring rule. For uncensored obs
 
 An alternative proper scoring rule for forecasts over continuous outcomes is the CRPS, defined as
 
-$$ S_{CRPS}(\hat{F},y) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - \mathbbm{1}\{{z\geq{y}\}\big)^{2}dz = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
+$$ S_{CRPS}(\hat{F},y) = \int_{-\infty}^{\infty} \big(\hat{F}(z) - \mathbbm{1}\{z\geq{y}\}\big)^{2}dz = \int_{-\infty}^{y} \hat{F}(z)^{2}dz + \int_{y}^{\infty} (1-\hat{F}(z))^{2}dz $$
 
 CRPS has been used in regrssion as an objective function that yields sharper predicted distributions compared to ML, while maintaining calibration. 
 Note the two integral terms in the latter epression; they correspond to the two shaded regions in Fig2a. CRPS score is reduced to 0 when the predicted distribution places all the mass on the point of true outcome (when shaded region vanishes).
