@@ -11,7 +11,16 @@ layout: default
 * TOC
 {:toc}
 
-# Introduction
+# Authors
+
+Anand Avati (Stanford)
+Tony Duan (Stanford)
+Kenneth Jung (Stanford)
+Nigam H. Shah (Stanford)
+Andrew Ng (Stanford)
+
+
+# 1 Introduction
 
 Personalized probabilistic forecasts of time to event
 
