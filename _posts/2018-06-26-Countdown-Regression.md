@@ -176,5 +176,53 @@ Input: sequence of features (patient info from EHR)
 Want to predict parameters of a parametric prob dist $\hat{F}$ over time to death at each timestep.
 The distributions that are ouput in each timestep are used to construct an overall loss.
 
-$$\mathcal{L}$$
+$$\mathcal{L}_{RIGHT} = \sum_{i=1}^{N}\sum_{t=1}^{T^{(i)}} S_{RIGHT} \big(\hat{F}_{RNN_{\theta}\{x_{1:t}^{(i)}\}}, (y_{t}^{(i)},c^{(i)})\big) $$
+
+$$\mathcal{L}_{INTVL} = \sum_{i=1}^{N}\sum_{t=1}^{T^{(i)}} S_{INTVL} \big(\hat{F}_{RNN_{\theta}\{x_{1:t}^{(i)}\}}, (y_{t}^{(i)},c^{(i)},T_{t}^{(i)})\big) $$
+
+where N is the total number of patients, T is the sequence length for the patient, and $\hat{F}_{RNN_{\theta}}$ is the distribution parametrized by the output of the RNN. 
+
+Called Countdown Regression because it is sequential and the predicted times to event are monotonically decreasing.
+
+## 2.5 Choice of log-normal noise distribution
+
+Common parametric distributions over time to event used in traditional SA models: Weibull, log-normal, log-logistic, gamma (in order to be sufficiently expressive in model space, we seek distributions with at least two parameters)
+
+Log-normal:doesn't involve Beta function or the pattern $(y/p_{1})^{p_{2}}$ (which make them highly sensitive to inputs and numerical instability issues).
+
+# 3 Experiments
+
+Four different training objectives: ML (right and interval), Survival-CRPS right and interval
+Max lifespan = 120 years
+
+The input at each timestep consists of both real valued (i.e. age) and discrete valued (ICD codes) data.
+Discrete data is embedded into a trainable real-valued vector space, and vectors corresponding to the codes recorded at a given timestep are combined into a weighted mean by a soft self-attention mechanism.
+Then, all real valued inputs are appended to the averaged embedding vector
+Use Swish activation function and layer normalization at every layer. 
+
+After the recurrent layers, the network has multple branches, one per parameter of the survival distribution (lognormal has sigma and mu). The final layer in each branch has scalar output. Bernoulli dropout at all fully connected layers, Variational RNN dropout in recurrent layers. Adam optimizer.
+
+## 3.1 Data
+
+## 3.2 Results
+
+All models are reasonably well-calibrated. Survival-CRPS with interval censoring yields the sharpest prediction distributions.
+Inspecting the mass past 120 years of age shows that a naively trained prediction model with maximum likelihood can assign more than 75% of the mas to unreasonable regions, largely due to low prevalence of uncensored examples, which is typical in real world EHR data sets. 
+
+By predicting an entire distribution over time to death, the same model can be used to make classification predictions at various time points. (figure 4)
+
+# 4 Related Work
+
+# 5 Conclusion
+
+Should explore objectives beyond maximum likelihood and evaluation metrics that assess the holistic quality of predicted distrubitions, instead of point estimates.
+
+For evaluation: Survival-AUPRC metric captures the degree to which a prediction distribution concentrates around the observed time of event
+
+By predicting an entire distribution for time-to-event, circumvent issues associated with binary classification.
+Still yields accurate predictions when evaluated as dichotomous outcomes at specific times.
+
+This is really awesome because it addresses a lot of challenges associated with survival analysis and time-to-event predictions. Not only does it estimate an entire distribution for each patient, but it's also capable of making dichotomous classifaction at specific time points, which is very useful and impressive.
+
+
 
