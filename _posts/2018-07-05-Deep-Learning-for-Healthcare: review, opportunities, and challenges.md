@@ -1,6 +1,6 @@
 ---
 published: true
-title: (REVIEW) Deep Learning for Healthcare - review, opportunities, and challenges
+title: Review | Deep Learning for Healthcare - review, opportunities, and challenges
 use_math: true
 category: Literature Review - DLEHR
 layout: default
