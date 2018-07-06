@@ -34,3 +34,36 @@ Representation learnin: minimizes manual intervention and domain knowledge requi
 DeepMind is diving into health care [28]
 (other big DL companies for healthcare)
 
+
+**Clinical imaging**
+
+Followed success in computer vision; first application of DL to clinical data 
+
+**EHR**
+
+structured (diagnosis, medicatinos, lab tests, etc)
+unstructured (free text clinical notes)
+
+usually specific, supervised predictive clinical task
+common: DL method that outperforms conventional models wrt certain performance metrics (AUROC, accuracy, F-score)
+some also use unsupervised methods to get latent patient representations
+
+some examples: DeepCare, Doctor AI, Deep Patient (others on the table)
+time series: Lipton, Che, Lasko, Razavian
+neural language models: Tran,Nguyen (Deepr)
+
+**Challenges and opportunities**
+
+1. Data volume: need a lot of data to train complex networks (why CV, NLP are so successful)
+2. Data quality: highly heterogeneous, ambiguous, noisy, incomoplete (sparsity, redundancy, missing values)
+3. Temporality: diseases and patients change over time; many models assume statis vector-based inputs; can't handle time well
+4. Domain complexity: phenomena trying to study are very complex and not completely known
+5. Interpretability: black boxes. reason why algorithms works is important for convincing professionals about recommendations and results
+
+Directions:
+1. Feature enrichment: use lots of features 
+2. Temporal modeling (RNN, attention, memory)
+3. Interpretable modeling
+
+scale to billions
+unified patient representation
