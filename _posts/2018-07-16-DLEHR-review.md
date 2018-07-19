@@ -22,3 +22,8 @@ In a design/method paragraph, describe what criteria we used to find articles, a
 
 Lots of EHR data recently; shift from expert-driven feature enginering to data-driven feature construction.
 
+**Challenges**
+
+Temporality and irregularity
+-gated architecture like LSTM or GRU
+
